@@ -5,7 +5,7 @@ export const ListaSuspensa = (props) => {
     const aoSelecionar = (e) => {
         props.aoAlterar(e.target.value)
     }
-    
+
     return (
         <div className="lista-suspensa">
             <label>{props.label}</label>
@@ -14,7 +14,7 @@ export const ListaSuspensa = (props) => {
                 onChange={aoSelecionar}
                 value={props.valor}>
                 {props.itens.map(item => {
-                    return <option key={item.Id}>{item.Nome}</option>
+                    return <option key={item.id}>{item.nome}</option>
                 })}
             </select>
         </div>

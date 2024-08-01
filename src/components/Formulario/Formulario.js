@@ -6,36 +6,6 @@ import Botao from "../Botao"
 
 export const Formulario = (props) => {
 
-    const times = [
-        {
-            Id: 1,
-            Nome: "Programação"
-        },
-        {
-            Id: 2,
-            Nome: "Front-end"
-        },
-        {
-            Id: 3,
-            Nome: "Data Science"
-        },
-        {
-            Id: 4,
-            Nome: "DevOps"
-        },
-        {
-            Id: 5,
-            Nome: "UX e Design"
-        },
-        {
-            Id: 6,
-            Nome: "Mobile"
-        },
-        {
-            Id: 7,
-            Nome: "Inovação e Gestão"
-        },
-    ]
     const [nome, setNome] = useState('')
     const [cargo, setCargo] = useState('')
     const [imagem, setImagem] = useState('')
@@ -79,7 +49,7 @@ export const Formulario = (props) => {
                 <ListaSuspensa
                     obrigatorio={true}
                     label="Time"
-                    itens={times}
+                    itens={props.times}
                     valor={time}
                     aoAlterar={valor => setTime(valor)} />
                 <Botao>
