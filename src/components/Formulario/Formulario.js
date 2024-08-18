@@ -4,7 +4,7 @@ import Campo from "../Campo"
 import ListaSuspensa from "../ListaSuspensa"
 import Botao from "../Botao"
 
-export const Formulario = (props) => {
+export const Formulario = ({ times, aoCadastrarColaborador }) => {
 
     const [nome, setNome] = useState('')
     const [cargo, setCargo] = useState('')
@@ -13,12 +13,16 @@ export const Formulario = (props) => {
 
     const salvar = (e) => {
         e.preventDefault()
-        props.aoCadastrarColaborador({
+        aoCadastrarColaborador({
             nome,
             cargo,
             imagem,
             time
         })
+        setNome('')
+        setCargo('')
+        setImagem('')
+        setTime('')
     }
 
     return (
@@ -43,13 +47,13 @@ export const Formulario = (props) => {
                     obrigatorio={true}
                     label="Imagem"
                     placeholder="Digite o caminho da imagem"
-                    type="file"
+                    type="text"
                     valor={imagem}
                     aoAlterar={valor => setImagem(valor)} />
                 <ListaSuspensa
                     obrigatorio={true}
                     label="Time"
-                    itens={props.times}
+                    itens={times}
                     valor={time}
                     aoAlterar={valor => setTime(valor)} />
                 <Botao>
