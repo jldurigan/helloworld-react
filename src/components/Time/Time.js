@@ -1,17 +1,23 @@
+import hexToRgba from "hex-to-rgba"
 import Colaborador from "../Colaborador"
 import "./Time.css"
 
-export const Time = ({ nome, corPrimaria, corSecundaria, colaboradores }) => {
+export const Time = ({ id, nome, cor, colaboradores, aoDeletar, mudarCor }) => {
     return (
         colaboradores.length > 0 &&
-        <section className="time" style={{ backgroundColor: corSecundaria }}>
-            <h3 style={{ borderColor: corPrimaria }}>{nome}</h3>
-            {colaboradores.map(colaborador => <Colaborador 
-            key={colaborador.nome} 
-            nome={colaborador.nome} 
-            cargo={colaborador.cargo} 
-            imagem={colaborador.imagem} 
-            cor={corPrimaria} />)}
+        <section className="time" style={{ backgroundColor: hexToRgba(cor, '0.5') }}>
+            <input onChange={evento => mudarCor(evento.target.value, id)} type="color" className="input-cor" value={cor} />
+            <h3 style={{ borderColor: cor }}>{nome}</h3>
+            {colaboradores.map(colaborador =>
+                <Colaborador
+                    key={colaborador.nome}
+                    nome={colaborador.nome}
+                    cargo={colaborador.cargo}
+                    imagem={colaborador.imagem}
+                    cor={cor}
+                    aoDeletar={aoDeletar}
+                />
+            )}
         </section>
     )
 }
