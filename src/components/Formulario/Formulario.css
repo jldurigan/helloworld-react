@@ -11,3 +11,14 @@
     padding: 36px 64px;
     box-shadow: 8px 8px 16px rgba(0, 0 ,0, 0.08);
 }
+
+.formulario label{
+    display: block;
+    margin-bottom: 8px;
+    font-size: 24px;
+}
+
+.input-cor-formulario{
+    display: flex;
+    justify-content: space-around;
+}

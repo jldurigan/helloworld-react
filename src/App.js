@@ -3,44 +3,45 @@ import './App.css';
 import Banner from './components/Banner';
 import Formulario from './components/Formulario';
 import Time from "./components/Time";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
 
   const [times, setTimes] = useState([
     {
-      id: 1,
+      id: uuidv4(),
       nome: "Programação",
-      cor: '#d9f7e9'
+      cor: '#57C278'
     },
     {
-      id: 2,
+      id: uuidv4(),
       nome: "Front-end",
-      cor: '#E8F8FF'
+      cor: '#82CFFA'
     },
     {
-      id: 3,
+      id: uuidv4(),
       nome: "Data Science",
-      cor: '#F0E7E8'
+      cor: '#A6D157'
     },
     {
-      id: 4,
+      id: uuidv4(),
       nome: "DevOps",
-      cor: '#FDE7E8'
+      cor: '#E06B69'
     },
     {
-      id: 5,
+      id: uuidv4(),
       nome: "UX e Design",
-      cor: '#FAE9F5'
+      cor: '#DB6EBF'
     },
     {
-      id: 6,
+      id: uuidv4(),
       nome: "Mobile",
-      cor: '#FFF5D9'
+      cor: '#FFBA05'
     },
     {
-      id: 7,
+      id: uuidv4(),
       nome: "Inovação e Gestão",
-      cor: '#FFEEDF'
+      cor: '#FF8A29'
     },
   ])
 
@@ -50,8 +51,12 @@ function App() {
     setColaboradores([...colaboradores, colaborador])
   }
 
-  const deletarColaborador = () => {
+  const cadastrarTime = (novoTime) => {
+    setTimes([...times, { ...novoTime, id: uuidv4() }])
+  }
 
+  const deletarColaborador = (id) => {
+    setColaboradores(colaboradores.filter(colaborador => colaborador.id !== id))
   }
 
   const mudarCorDoTime = (cor, idTime) => {
@@ -65,7 +70,11 @@ function App() {
   return (
     <div className="App">
       <Banner />
-      <Formulario times={times} aoCadastrarColaborador={colaborador => aoCadastrarNovoColaborador(colaborador)} />
+      <Formulario
+        times={times}
+        aoCadastrarColaborador={colaborador => aoCadastrarNovoColaborador(colaborador)}
+        cadastrarTime={cadastrarTime}
+      />
       {times.map(time =>
         <Time
           id={time.id}

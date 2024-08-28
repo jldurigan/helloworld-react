@@ -4,12 +4,14 @@ import Campo from "../Campo"
 import ListaSuspensa from "../ListaSuspensa"
 import Botao from "../Botao"
 
-export const Formulario = ({ times, aoCadastrarColaborador }) => {
+export const Formulario = ({ times, aoCadastrarColaborador, cadastrarTime }) => {
 
     const [nome, setNome] = useState('')
     const [cargo, setCargo] = useState('')
     const [imagem, setImagem] = useState('')
     const [time, setTime] = useState('')
+    const [nomeTime, setNomeTime] = useState('')
+    const [corTime, setCorTime] = useState('')
 
     const salvar = (e) => {
         e.preventDefault()
@@ -23,6 +25,16 @@ export const Formulario = ({ times, aoCadastrarColaborador }) => {
         setCargo('')
         setImagem('')
         setTime('')
+    }
+
+    const salvarTime = (e) => {
+        e.preventDefault();
+        cadastrarTime({
+            nome: nomeTime,
+            cor: corTime
+        })
+        setNomeTime('')
+        setCorTime('')
     }
 
     return (
@@ -58,6 +70,28 @@ export const Formulario = ({ times, aoCadastrarColaborador }) => {
                     aoAlterar={valor => setTime(valor)} />
                 <Botao>
                     Criar card
+                </Botao>
+            </form>
+            <form onSubmit={salvarTime}>
+                <h2>Preencha os dados para criar um novo time</h2>
+                <Campo
+                    obrigatorio={true}
+                    label="Nome"
+                    placeholder="Digite o nome do time"
+                    type="text"
+                    valor={nomeTime}
+                    aoAlterar={valor => setNomeTime(valor)}
+                />
+                <div className="input-cor-formulario">
+                    <label>Selecione a cor do time:</label>
+                    <input
+                        value={corTime}
+                        type="color"
+                        onChange={e => setCorTime(e.target.value)}
+                    />
+                </div>
+                <Botao>
+                    Criar time
                 </Botao>
             </form>
         </section>

@@ -10,6 +10,7 @@ export const Time = ({ id, nome, cor, colaboradores, aoDeletar, mudarCor }) => {
             <h3 style={{ borderColor: cor }}>{nome}</h3>
             {colaboradores.map(colaborador =>
                 <Colaborador
+                    id={colaborador.id}
                     key={colaborador.nome}
                     nome={colaborador.nome}
                     cargo={colaborador.cargo}
