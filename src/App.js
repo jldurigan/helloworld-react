@@ -48,7 +48,7 @@ function App() {
   const [colaboradores, setColaboradores] = useState([])
 
   const aoCadastrarNovoColaborador = (colaborador) => {
-    setColaboradores([...colaboradores, colaborador])
+    setColaboradores([...colaboradores, { ...colaborador, id: uuidv4() }])
   }
 
   const cadastrarTime = (novoTime) => {
@@ -64,6 +64,15 @@ function App() {
       if (time.id === idTime)
         time.cor = cor;
       return time
+    }))
+  }
+
+  const resolverFavorito = (id) => {
+    setColaboradores(colaboradores.map(colaborador => {
+      if (colaborador.id === id){
+        colaborador.favorito = !colaborador.favorito;
+      }
+      return colaborador;
     }))
   }
 
@@ -84,6 +93,7 @@ function App() {
           colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
           mudarCor={mudarCorDoTime}
           aoDeletar={deletarColaborador}
+          aoFavoritar={resolverFavorito}
         />
       )}
     </div>

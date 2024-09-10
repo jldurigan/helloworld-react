@@ -7,14 +7,15 @@ export const Campo = ({label, valor, obrigatorio, placeholder, type, aoAlterar})
     }
 
     return (
-        <div className="campo">
+        <div className={`campo campo-${type}`}>
             <label>{label}</label>
             <input
-                value={valor} 
-                onChange={aoDigitar} 
-                required={obrigatorio} 
-                placeholder={placeholder} 
-                type={type} />
+                value={valor}
+                onChange={aoDigitar}
+                required={obrigatorio}
+                placeholder={placeholder}
+                type={type}
+            />
         </div>
     )
 }
